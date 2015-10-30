@@ -1,0 +1,9 @@
+cd BwgameDocker
+docker build -t bw-docker .
+export BWGAME_SOURCE=/Users/whj/bwgame/
+docker run -it -v $BWGAME_SOURCE:/bwgame --name bwgame_build bw-docker:latest /bin/bash
+
+docker start bwgame_build
+
+docker run -i -t --sig-proxy=false 21ffe545748baf /bin/bash
+docker attach bwgame_build
